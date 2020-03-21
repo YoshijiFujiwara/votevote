@@ -1,0 +1,7 @@
+* @YoshijiFujiwara
+*.js @YoshijiFujiwara
+*.jsx @YoshijiFujiwara
+*.ts @YoshijiFujiwara
+*.tsx @YoshijiFujiwara
+*.yml @YoshijiFujiwara
+/ui/public/ @YoshijiFujiwara
