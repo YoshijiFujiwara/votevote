@@ -54,11 +54,11 @@ jobs:
         run: yarn run build
         working-directory: ${{ env.working-directory }}
       - name: Upload Build Folder
+        if: github.event_name == 'push'
         uses: actions/upload-artifact@v1
         with:
           name: build
           path: ui/build
-      - uses: actions/download-artifact
       - name: Deploy to Staging
         if: github.event_name == 'push'
         run: npx surge --project ./build --domain votevote-dev.surge.sh
