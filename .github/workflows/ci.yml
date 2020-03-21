@@ -20,7 +20,7 @@ jobs:
         id: yarn-cache # use this to check for `cache-hit` (`steps.yarn-cache.outputs.cache-hit != 'true'`)
         with:
           path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
-          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          key: ${{ runner.os }}-yarn-${{ hashFiles('.ui/yarn.lock') }}
           restore-keys: |
             ${{ runner.os }}-yarn-
       - name: Cache node_modules
@@ -44,7 +44,7 @@ jobs:
         env:
           CI: true
         working-directory: ${{ env.working-directory }}
-      - name: Upload code coverage
+      - name: Upload Test Coverage
         uses: actions/upload-artifact@v1
         with:
           name: code-coverage
@@ -53,6 +53,12 @@ jobs:
         if: github.event_name == 'push'
         run: yarn run build
         working-directory: ${{ env.working-directory }}
+      - name: Upload Build Folder
+        uses: actions/upload-artifact@v1
+        with:
+          name: build
+          path: ui/build
+      - uses: actions/download-artifact
       - name: Deploy to Staging
         if: github.event_name == 'push'
         run: npx surge --project ./build --domain votevote-dev.surge.sh
