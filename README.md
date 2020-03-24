@@ -4,7 +4,7 @@
 
 - [Using ESLint and Prettier in a TypeScript Project](https://www.robertcooper.me/using-eslint-and-prettier-in-a-typescript-project)
 
-## 参考ツール
+## 使用ツール
 
 - [codecov](https://codecov.io/)
 - [conventional-changelog/commitlint](https://github.com/conventional-changelog/commitlint)
