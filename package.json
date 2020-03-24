@@ -1,0 +1,36 @@
+{
+  "name": "votevote",
+  "version": "1.0.0",
+  "description": "## 参考文献",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/YoshijiFujiwara/votevote.git"
+  },
+  "author": "YoshijiFujiwara",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/YoshijiFujiwara/votevote/issues"
+  },
+  "homepage": "https://github.com/YoshijiFujiwara/votevote#readme",
+  "husky": {
+    "hooks": {
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
+      "prepare-commit-msg": "exec < /dev/tty && git cz --hook || true"
+    }
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^8.3.5",
+    "@commitlint/config-conventional": "^8.3.4",
+    "cz-conventional-changelog": "^3.1.0",
+    "husky": "^4.2.3"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  }
+}
