@@ -1,3 +1,5 @@
+![](https://github.com/YoshijiFujiwara/votevote/workflows/CI/badge.svg?branch=develop&event=push)
+
 # votevote
 
 ## 参考文献
