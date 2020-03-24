@@ -10,6 +10,8 @@ jobs:
     runs-on: ubuntu-latest
     env:
       working-directory: ./ui
+      SURGE_LOGIN: ${{ secrets.SURGE_LOGIN }}
+      SURGE_TOKEN: ${{ secrets.SURGE_TOKEN }}
     steps:
       - uses: actions/checkout@v2
       # https://github.com/actions/cache/blob/master/examples.md#node---yarn
@@ -72,9 +74,15 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         working-directory: ${{ env.working-directory }}
       - name: Deploy to Staging
-        if: github.event_name == 'push'
+        if: github.event_name == 'push' && github.ref == 'refs/heads/develop'
         run: npx surge --project ./build --domain votevote-dev.surge.sh
         working-directory: ${{ env.working-directory }}
+      - name: Deploy to Production
+        if: github.event_name == 'push' && github.ref == 'refs/heads/master'
+        run: npx surge --project ./build --domain votevote.surge.sh
+        working-directory: ${{ env.working-directory }}
+      - name: Upload Coverage Reports
+        run: npx codecov
+        working-directory: ${{ env.working-directory }}
         env:
-          SURGE_LOGIN: ${{ secrets.SURGE_LOGIN }}
-          SURGE_TOKEN: ${{ secrets.SURGE_TOKEN }}
+          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
